@@ -27,7 +27,12 @@ a {
 }
 
 .size-users {
-  max-width: 18rem;
+  min-width: 25rem;
+  max-width: 29rem;
+  }
+
+  .width-menubar{
+    max-width:450px;
   }
 
 .font-step{
@@ -42,7 +47,14 @@ a {
   color:#2DAD70;
 }
 
-swiper-container {
+/* .image-container-shadow{
+  box-shadow: 4px 4px 24px 0 rgba(46, 93, 214, 0.12) ;
+  display: flex;
+  align-self: center;
+
+} */
+
+/* swiper-container {
   width: 100%;
   height: 100%;
 }
@@ -57,8 +69,17 @@ swiper-slide {
 }
 
 swiper-slide img {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+  justify-content: center;
+  align-items: center;
+  
+} */
+
+.image-container {
+ 
+filter: drop-shadow(4px 4px 24px rgba(46, 93, 214, 0.12));
+border-radius: 12px;
+   
+  }

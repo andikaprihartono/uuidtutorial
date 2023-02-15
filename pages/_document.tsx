@@ -1,8 +1,8 @@
 import { Html, Head, Main, NextScript } from 'next/document';
-import Foot from './components/wave';
+import Foot from './components/Wave';
 import Image from 'next/image';
 import Logore from '../public/Logore.svg';
-import Registration from '../pages/components/registrasi'
+import Registration from './components/Registrasi'
 
 
 export default function Document() {

@@ -1,0 +1,11 @@
+--swiper-pagination-color:red;
+--swiper-pagination-bottom: 20px;
+--swiper-pagination-top: 24px;
+--swiper-pagination-fraction-color: inherit;
+--swiper-pagination-bullet-size: 12px;
+--swiper-pagination-bullet-inactive-color: #000;
+--swiper-pagination-bullet-inactive-opacity: 0.2;
+--swiper-pagination-bullet-opacity: 1;
+--swiper-pagination-bullet-active-background-color: #2DAD70;
+.bulletActiveClass-background-color: #2DAD70;
+

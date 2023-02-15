@@ -14,11 +14,6 @@ module.exports = {
 
     return config
   },
-  // experimental: {
-  //   fontLoaders: [
-  //     { loader: '@next/font/google', options: { subsets: ['latin'] } },
-  //   ],
-  // },
   module: {
     rules: [
       {

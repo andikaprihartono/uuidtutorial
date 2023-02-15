@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react';
-function buttonregis(){
+function Buttonregis(){
     const [showRegis, setShowRegis] = useState(false);
     return(
         <>
@@ -10,4 +10,4 @@ py-2.5 bg-color-button text-white text-center Font-bold text-base">Register UDID
         </>
     )
 }
-export default buttonregis;
+export default Buttonregis;

@@ -3,23 +3,35 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import Step from './components/step'
-import Step2 from '../pages/components/step2'
-import Step3 from '../pages/components/step3'
-import Step4 from '../pages/components/step4'
-import Step5 from '../pages/components/step5'
+import Step from './components/Step'
+// import Step2 from '../pages/components/step2'
+import Step3 from './components/Step3';
+import Step4 from './components/Step4';
+import Step5 from './components/Step5';
+
+
 import Logore from '../public/Logore.svg'
-import Buttonregis from '../pages/components/buttonregis'
-import Registration from '../pages/components/registrasi'
+import Buttonregis from './components/Buttonregis'
+import Registration from './components/Registrasi'
+import Step1 from './components/Step1';
+import Step2 from './components/Step2';
 
 
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper React components
 
+import { Autoplay, Pagination } from "swiper";
+import './components/Step.module.css';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import SwiperCore from "swiper";
+import Foot from './components/Wave'
 
-
-import Foot from '../pages/components/wave'
 
 const inter = Inter({ subsets: ['latin'] })
 
+SwiperCore.use([Autoplay]);
 export default function Home() {
   return (
     <>
@@ -36,9 +48,18 @@ export default function Home() {
       <Logore />
       </div>
    
-       <main className="size-users mx-auto w-full py-8  ">
-       <Step />
-  
+       <main className="size-users mx-auto w-full py-8 lg:px-9 px-8 ">
+       {/* <Step /> */}
+
+<Swiper slidesPerView={1}  modules={[Pagination]} autoplay={{delay:5000}} loop={true} pagination={true} className="mySwiper mb-6">
+<SwiperSlide> <Step1 /> </SwiperSlide>
+<SwiperSlide> <Step2 /> </SwiperSlide>
+<SwiperSlide> <Step3 /> </SwiperSlide>
+<SwiperSlide> <Step4 /> </SwiperSlide>
+<SwiperSlide> <Step5 /> </SwiperSlide>
+  </Swiper>
+
+
        <Registration />
      </main>
  

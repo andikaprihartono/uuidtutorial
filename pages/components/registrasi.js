@@ -15,46 +15,90 @@ import axios from 'axios';
 function Registration(){
     const [showRegis,setShowRegis] = useState(false);
     // const [showAlert,setAlert] = useState ("");
-    // const [npk,setNpk]=useState('')
+    // const [employee_no,setNpk]=useState('')
     // const [udid,setUdid]=useState('')
+    const MySwal = withReactContent(Swal)
     
     const [data,setData] = useState({
-        npk:"",
+        employee_no:"",
         udid:""
     })
     
+
+
     function submit(el){
     el.preventDefault();
-    axios.post("https://api.ptre.co.id/portal/api/v1/udid-registration",{
-        npk:data.npk,
-        udid:data.udid
-    })
-    .then(res=>{
-        console.log(res.data)
-    })
 
-if(npk.length==0||udid.length==0){
-    setError(true)
-}else{
+// if(employee_no.length==0||udid.length==0){
+//     setError(true)
+// }else{
   
-      Swal.fire({
-        title: "Success!",
-        text: "You clicked the button!",
-        icon: "success",
-        button: "Done!",
+//       Swal.fire({
+//         title: "Success!",
+//         text: "You clicked the button!",
+//         icon: "success",
+//         button: "Done!",
         
-      })
-}
+//       })
+// }
+// const [error,setError] = useState(false);
 
+axios({
+   url:"https://api.ptre.co.id/portal/sanctum/csrf-cookie",
+    method:"get" 
+
+}).then((response) =>{
+    console.log(document.cookie);
+    axios({
+        url: "https://api.ptre.co.id/portal/api/v1/udid-registration",
+        method :"POST",
+       data:{
+        employee_no:data.employee_no,
+        udid:data.udid 
+       },
+       withCredentials:true
+    }) .then((res)=>{
+        console.log(res);
+      
+            return  MySwal.fire({
+                  title: "Success!",
+                  text:"Your UDID has been registered",
+                  icon: "success",
+                  button: "Done!",
+                  
+                })
+
+        
+        
+    }).catch(err=>{
+        
+        if(err.response.status === 422 ){
+            const errorNotif=  err.response.data.errors;
+            for (let errorColoumn in errorNotif){
+            let inputColoumn = document.querySelector(`input[name=${errorColoumn}]`);
+            let classCointainerInput = document.querySelector(".container-input");
+            
+            let notifContainer = document.createElement("span");
+            notifContainer.classList.add("text-red-500" ,"text-xs" ,"font-light" ,"ml-1");
+            notifContainer.innerHTML= errorNotif[errorColoumn][0];
+            console.log( notifContainer);       
+            classCointainerInput.appendChild(inputColoumn);
+            classCointainerInput.appendChild(notifContainer);
+        
+         }
+        }
+
+       
+    })
+
+})
     setData(
       {
-        npk:"",
+        employee_no:"",
         udid:""
       }  
     )
     }
-    
-    
     
     function handleInput(el){
     const newdata={...data};
@@ -64,7 +108,7 @@ if(npk.length==0||udid.length==0){
     }
     
     
-    const [error,setError] = useState(false);
+    
     
 
 
@@ -101,28 +145,33 @@ className=" mt-6 mb-4 w-full rounded-xl justify-center  py-2.5
 </div>
 
 <form onSubmit={submit}>
-<div className="mt-4">
+<div className="mt-4 container-input">
     <label className="text-base font-medium">NPK (Nomor Pokok Karyawan)</label>
-    <input id="npk"  value={data.npk} onChange={handleInput} className="border w-full rounded-lg p-2.5 mt-2" type="number" name="npk" placeholder="NPK (Nomor Pokok Karyawan)"/>
+    <input id="employee_no"  value={data.employee_no} onChange={handleInput} className="border w-full rounded-lg p-2.5 mt-2"
+     type="number" name="employee_no" placeholder="NPK (Nomor Pokok Karyawan)"/>
+     <div> </div>
 </div>
-{
-    error&&npk.length<=0?
+{/* {
+    error&&employee_no.length<=0?
     <div className="flex  h-full mt-2">
 <WarningSign />
     <label className="text-red-500 text-xs font-light ml-1">Type error here</label>
 </div>:""
-}
-<div className="mt-4">
+} */}
+<div className="mt-4 container-input">
 <label className="text-base font-medium">UDID</label>
-<input id="udid" value={data.udid} onChange={handleInput} className="border w-full rounded-lg p-2.5 mt-2"  name="udid" type="text" placeholder="UDID"/>
+<input id="udid" value={data.udid} onChange={handleInput} className="border w-full rounded-lg p-2.5 mt-2"  name="udid" type="text" placeholder="UDID"
+    
+/>
+
 </div>
-{
+{/* {
     error&&udid.length<=0?
 <div className="flex  h-full mt-2">
 <WarningSign />
     <label className="text-red-500 text-xs font-light ml-1">Type error here</label>
 </div>:""
-}
+} */}
 <button type={'submit'}  className="w-full mt-4 rounded-xl  py-2.5 bg-color-button text-white text-center Font-bold text-base">Register</button>
 {/* <button onClick={setAlert} className="w-full mt-4 rounded-xl  py-2.5 bg-color-button text-white text-center Font-bold ">Register</button> */}
 </form>

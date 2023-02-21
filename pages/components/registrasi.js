@@ -28,6 +28,13 @@ function Registration(){
 
     function submit(el){
     el.preventDefault();
+let inputTag = document.querySelector(".error-input")
+for( let errorInput in inputTag){
+    console.log(errorInput);
+    errorInput.remove();
+
+
+}
 
 // if(employee_no.length==0||udid.length==0){
 //     setError(true)
@@ -65,7 +72,6 @@ axios({
                   text:"Your UDID has been registered",
                   icon: "success",
                   button: "Done!",
-                  
                 })
 
         
@@ -75,20 +81,23 @@ axios({
         if(err.response.status === 422 ){
             const errorNotif=  err.response.data.errors;
             for (let errorColoumn in errorNotif){
+
             let inputColoumn = document.querySelector(`input[name=${errorColoumn}]`);
-            let classCointainerInput = document.querySelector(".container-input");
+            inputColoumn.classList.add("border-red-500");
+            let classCointainerInput = inputColoumn.closest(".container-input")
             
-            let notifContainer = document.createElement("span");
-            notifContainer.classList.add("text-red-500" ,"text-xs" ,"font-light" ,"ml-1");
+            const notifContainer = document.createElement("div");
+            notifContainer.classList.add("text-red-500" ,"text-xs" ,"font-light" ,"ml-1","error-input");
             notifContainer.innerHTML= errorNotif[errorColoumn][0];
             console.log( notifContainer);       
-            classCointainerInput.appendChild(inputColoumn);
-            classCointainerInput.appendChild(notifContainer);
-        
-         }
-        }
 
-       
+            classCointainerInput.appendChild(notifContainer);
+            
+           
+        }
+        }
+        
+        
     })
 
 })
@@ -107,12 +116,6 @@ axios({
     console.log(newdata);
     }
     
-    
-    
-    
-
-
-
     return(
 <>
 
@@ -149,31 +152,17 @@ className=" mt-6 mb-4 w-full rounded-xl justify-center  py-2.5
     <label className="text-base font-medium">NPK (Nomor Pokok Karyawan)</label>
     <input id="employee_no"  value={data.employee_no} onChange={handleInput} className="border w-full rounded-lg p-2.5 mt-2"
      type="number" name="employee_no" placeholder="NPK (Nomor Pokok Karyawan)"/>
-     <div> </div>
+    
 </div>
-{/* {
-    error&&employee_no.length<=0?
-    <div className="flex  h-full mt-2">
-<WarningSign />
-    <label className="text-red-500 text-xs font-light ml-1">Type error here</label>
-</div>:""
-} */}
+
 <div className="mt-4 container-input">
 <label className="text-base font-medium">UDID</label>
-<input id="udid" value={data.udid} onChange={handleInput} className="border w-full rounded-lg p-2.5 mt-2"  name="udid" type="text" placeholder="UDID"
-    
-/>
+<input id="udid" value={data.udid} onChange={handleInput} className="border w-full rounded-lg p-2.5 mt-2"  name="udid" type="text" placeholder="UDID"/>
 
 </div>
-{/* {
-    error&&udid.length<=0?
-<div className="flex  h-full mt-2">
-<WarningSign />
-    <label className="text-red-500 text-xs font-light ml-1">Type error here</label>
-</div>:""
-} */}
+
 <button type={'submit'}  className="w-full mt-4 rounded-xl  py-2.5 bg-color-button text-white text-center Font-bold text-base">Register</button>
-{/* <button onClick={setAlert} className="w-full mt-4 rounded-xl  py-2.5 bg-color-button text-white text-center Font-bold ">Register</button> */}
+
 </form>
 
 </div>

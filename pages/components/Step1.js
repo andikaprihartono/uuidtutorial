@@ -15,7 +15,7 @@ function Step1(){
     return(
 <>
 
-<div className="w-full flex flex-col mx-auto text-center mb-6">
+<div className="size-users w-full flex flex-col mx-auto text-center mb-6">
      
 <div className="image-container-shadow w-full ">
 <div className="image-container">

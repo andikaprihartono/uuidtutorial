@@ -15,7 +15,7 @@ function Step5(){
     return(
 <>
 
-<div className="w-full flex-col  text-center mb-6">
+<div className="size-users w-full flex-col  text-center mb-6">
       <div className="image-container">
 <Image 
     src={image5}

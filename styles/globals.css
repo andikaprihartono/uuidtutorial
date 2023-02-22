@@ -12,6 +12,10 @@ main {
   z-index: 100;
 }
 
+.main-height{
+  height: calc(100vh-90px);
+}
+
 .footer-wave{
   z-index:-1;
 }
@@ -27,8 +31,8 @@ a {
 }
 
 .size-users {
-  min-width: 25rem;
-  max-width: 29rem;
+  width: 22.5rem;
+  /* max-width: 29rem; */
   }
 
   .width-menubar{

@@ -16,7 +16,6 @@ import Registration from './components/Registrasi'
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 
-
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper React components
@@ -44,14 +43,13 @@ export default function Home() {
 <link rel="preconnect" href="https://fonts.gstatic.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </Head>
-      <div className='mt-6 ml-6'>
+      <div className='py-6 px-6'>
       <Logore />
       </div>
    
-       <main className="size-users mx-auto w-full py-8 lg:px-9 px-8 ">
-       {/* <Step /> */}
-
-<Swiper slidesPerView={1}  modules={[Pagination]} autoplay={{delay:5000}} loop={true} pagination={true} className="mySwiper mb-6">
+       <main className="size-users w-full items-center flex flex-col mx-auto justify-center py-8 lg:px-0 px-0 main-height"  >
+     
+<Swiper slidesPerView={1}  modules={[Pagination]} autoplay={{delay:5000}} loop={true} pagination={true} className="size-users mySwiper mb-6">
 <SwiperSlide> <Step1 /> </SwiperSlide>
 <SwiperSlide> <Step2 /> </SwiperSlide>
 <SwiperSlide> <Step3 /> </SwiperSlide>

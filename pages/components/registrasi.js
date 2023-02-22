@@ -9,9 +9,6 @@ import withReactContent from "sweetalert2-react-content";
 import WarningSign from "../../public/warningsign.svg";
 import axios from 'axios';
 
-
-
-
 function Registration(){
     const [showRegis,setShowRegis] = useState(false);
     // const [showAlert,setAlert] = useState ("");
@@ -24,31 +21,14 @@ function Registration(){
         udid:""
     })
     
-
-
     function submit(el){
     el.preventDefault();
 let inputTag = document.querySelector(".error-input")
 for( let errorInput in inputTag){
     console.log(errorInput);
     errorInput.remove();
-
-
 }
 
-// if(employee_no.length==0||udid.length==0){
-//     setError(true)
-// }else{
-  
-//       Swal.fire({
-//         title: "Success!",
-//         text: "You clicked the button!",
-//         icon: "success",
-//         button: "Done!",
-        
-//       })
-// }
-// const [error,setError] = useState(false);
 
 axios({
    url:"https://api.ptre.co.id/portal/sanctum/csrf-cookie",
@@ -92,11 +72,8 @@ axios({
             console.log( notifContainer);       
 
             classCointainerInput.appendChild(notifContainer);
-            
-           
         }
         }
-        
         
     })
 

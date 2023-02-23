@@ -22,20 +22,21 @@ function Registration(){
     })
     
     function submit(el){
-    el.preventDefault();
-let inputTag = document.querySelector(".error-input")
-for( let errorInput in inputTag){
-    console.log(errorInput);
-    errorInput.remove();
-}
+        let inputTag = document.querySelector(".error-input")
+    for( let errorInput in inputTag){
+        console.log(errorInput);
+         errorInput.remove();
+    }
+        el.preventDefault();
+
 
 
 axios({
    url:"https://api.ptre.co.id/portal/sanctum/csrf-cookie",
     method:"get" 
 
-}).then((response) =>{
-    console.log(document.cookie);
+}).then(() =>{
+   
     axios({
         url: "https://api.ptre.co.id/portal/api/v1/udid-registration",
         method :"POST",
